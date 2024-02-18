@@ -41,10 +41,12 @@ const getGraphQLErrors = (
 
     const messages = errors?.map((error) => error?.message)?.join("");
     const code = errors?.[0]?.extensions?.code;
+    const code = errors?.[0]?.extensions?.code ?? 500;
 
     return {
       message: messages ?? JSON.stringify(errors),
       statusCode: code || 500
+      statusCode: code
     }
   }
 

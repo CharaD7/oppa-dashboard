@@ -1,4 +1,10 @@
 import { GraphQLFormattedError } from "graphql";
+import { type GraphQLFormattedError } from "graphql";
+
+interface Error {
+  message: string;
+  statusCode: string;
+}
 
 const customFetch = async (url: string, options: RequestInit) => {
   const accessToken = localStorage.getItem("access_token");

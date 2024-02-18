@@ -29,6 +29,7 @@ const getGraphQLErrors = (
   body: Record<"errors", GraphQLFormattedError[] | undefined>
 ): Error | null => {
   if (!body) {
+  if (body.errors === undefined) {
     return {
       message: "Unknown error",
       statusCode: "INTERNAL_SERVER_ERROR",

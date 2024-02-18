@@ -1,4 +1,3 @@
-import { GraphQLFormattedError } from "graphql";
 import { type GraphQLFormattedError } from "graphql";
 
 interface Error {
@@ -6,7 +5,6 @@ interface Error {
   statusCode: string;
 }
 
-const customFetch = async (url: string, options: RequestInit) => {
 const customFetch = async (
   url: string, 
   options: RequestInit
@@ -18,16 +16,18 @@ const customFetch = async (
     ...options,
     headers: {
       ...headers,
-      Authorization: headers?.Authorization || `Bearer ${accessToken}`,
-      Authorization: headers?.Authorization !== undefined && headers.Authorization !== '' ? headers.Authorization : `Bearer ${accessToken}`,
+      Authorization: headers?.Authorization !== undefined && 
+        headers.Authorization !== '' ? headers.Authorization : 
+        `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       "Apollo-Require-Preflight": "true", // This fixes cross origin errors
     }
   });
 };
 
-const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>): Error | nul => {
-const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>): Error | null => {
+const getGraphQLErrors = (
+  body: Record<"errors", GraphQLFormattedError[] | undefined>
+): Error | null => {
   if (!body) {
     return {
       message: "Unknown error",
@@ -42,7 +42,6 @@ const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undef
     const code = errors?.[0]?.extensions?.code;
 
     return {
-      message: messages | JSON.stringify(errors)
       message: messages ?? JSON.stringify(errors),
       statusCode: code || 500
     }

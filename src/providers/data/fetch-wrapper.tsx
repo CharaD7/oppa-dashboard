@@ -15,6 +15,7 @@ const customFetch = async (url: string, options: RequestInit) => {
     headers: {
       ...headers,
       Authorization: headers?.Authorization || `Bearer ${accessToken}`,
+      Authorization: headers?.Authorization !== undefined && headers.Authorization !== '' ? headers.Authorization : `Bearer ${accessToken}`,
       "Content-Type": "application/json",
       "Apollo-Require-Preflight": "true", // This fixes cross origin errors
     }

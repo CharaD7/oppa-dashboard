@@ -23,6 +23,7 @@ const customFetch = async (url: string, options: RequestInit) => {
 };
 
 const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>): Error | nul => {
+const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined>): Error | null => {
   if (!body) {
     return {
       message: "Unknown error",

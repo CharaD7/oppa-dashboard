@@ -28,7 +28,6 @@ const customFetch = async (
 const getGraphQLErrors = (
   body: Record<"errors", GraphQLFormattedError[] | undefined>
 ): Error | null => {
-  if (!body) {
   if (body.errors === undefined) {
     return {
       message: "Unknown error",
@@ -40,12 +39,10 @@ const getGraphQLErrors = (
     const errors = body?.errors;
 
     const messages = errors?.map((error) => error?.message)?.join("");
-    const code = errors?.[0]?.extensions?.code;
     const code = errors?.[0]?.extensions?.code ?? 500;
 
     return {
       message: messages ?? JSON.stringify(errors),
-      statusCode: code || 500
       statusCode: code
     }
   }

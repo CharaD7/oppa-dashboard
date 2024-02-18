@@ -7,6 +7,10 @@ interface Error {
 }
 
 const customFetch = async (url: string, options: RequestInit) => {
+const customFetch = async (
+  url: string, 
+  options: RequestInit
+): Promise<Response> => {
   const accessToken = localStorage.getItem("access_token");
   const headers = options.headers as Record<string, string>;
 

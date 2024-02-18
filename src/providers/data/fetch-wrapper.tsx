@@ -52,3 +52,27 @@ const getGraphQLErrors = (
 
   return null
 }
+
+const fetchWrapper = async (
+  url: string,
+  options: RequestInit
+): Promise<Response> => {
+  const response = await customFetch(url, options);
+
+  // so response object can be manipulated
+  const responseClone = response.clone(); 
+  // get the response body from the cloned response
+  const body: Record<"errors", GraphQLFormattedError[] 
+    | undefined> = await responseClone.json();
+
+  const error = getGraphQLErrors(body);
+
+  // Explicitly check if error is not null
+  if (error !== null) {
+    const errorObj = new Error(error.message);
+    (errorObj as any).statusCode = error.statusCode;
+    throw errorObj;
+  };
+
+  return response;
+}

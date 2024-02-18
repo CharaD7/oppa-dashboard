@@ -50,7 +50,7 @@ const getGraphQLErrors = (
   return null
 }
 
-const fetchWrapper = async (
+export const fetchWrapper = async (
   url: string,
   options: RequestInit
 ): Promise<Response> => {

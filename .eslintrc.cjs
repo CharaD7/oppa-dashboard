@@ -5,7 +5,7 @@ module.exports = {
   },
   "extends": [
     "standard-with-typescript",
-    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "prettier"
   ],
   "overrides": [

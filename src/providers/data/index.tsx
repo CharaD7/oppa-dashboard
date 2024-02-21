@@ -1,5 +1,4 @@
-import { 
-  default as graphqlDataProvider,
+import graphqlDataProvider, { 
   GraphQLClient, 
   liveProvider as graphqlLiveProvider 
 } from "@refinedev/nestjs-query";

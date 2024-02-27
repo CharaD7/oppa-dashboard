@@ -35,7 +35,7 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
-function App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <GitHubBanner />

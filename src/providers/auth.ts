@@ -73,4 +73,37 @@ export const authProvider: AuthBindings = {
 
     return { error };
   },
+
+  check: async () => {
+    try {
+      // get the identity of the user
+      // this is to know if the user is authenticated or not
+      await dataProvider.custom({
+        url: API_URL,
+        method: "post",
+        headers: {},
+        meta: {
+          rawQuery: `
+            query Me {
+              me {
+                name
+              }
+            }
+          `,
+        },
+      });
+
+      // if hte user is authenticated, redirect to te home page
+      return {
+        authenticated: true,
+        redirectTo: "/",
+      }
+    } catch (error) {
+      // for any other error, redirect to the login page
+      return {
+        authenticated: false,
+        redirectTo: "/login",
+      }
+    }
+  }
 };

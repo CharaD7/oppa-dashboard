@@ -1,4 +1,4 @@
-import { AuthBindings } from "@refinedev/core";
+import { type AuthBindings } from "@refinedev/core";
 import { API_URL, dataProvider } from "./data";
 
 export const authCredentials = {
@@ -27,7 +27,7 @@ export const authProvider: AuthBindings = {
                 accessToken
               }
             }
-          `
+          `,
         }
       });
 
@@ -48,6 +48,16 @@ export const authProvider: AuthBindings = {
           name: "name" in error ? error.name : "Invalid email or password",
         }
       };
+    }
+  },
+
+  // simply remove the accessToken from localStorage for the logout
+  logout: async () => {
+    localStorage.removeItem("access_token");
+
+    return {
+      success: true,
+      redirectTo: "/login",
     }
   },
 };

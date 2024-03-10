@@ -10,7 +10,7 @@ import {
 } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { dataProvider, liveProvider } from "./providers";
+import { authProvider, dataProvider, liveProvider } from "./providers";
 import routerBindings, {
   CatchAllNavigate,
   DocumentTitleHandler,
@@ -47,7 +47,7 @@ const App: React.FC = () => {
               liveProvider={liveProvider}
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
-              // authProvider={}
+              authProvider={authProvider}
               resources={[
                 {
                   name: "blog_posts",

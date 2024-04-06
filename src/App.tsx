@@ -31,9 +31,7 @@ import {
   CategoryList,
   CategoryShow,
 } from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
+import { ForgotPassword, Home, Login, Register } from "./pages";
 
 const App: React.FC = () => {
   return (

@@ -129,6 +129,7 @@ const App: React.FC = () => {
                     element={<ForgotPassword />}
                   />
                 </Route>
+                <Route index element={<Home />} />
               </Routes>
 
               <RefineKbar />
